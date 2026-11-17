@@ -1,5 +1,5 @@
 # Medal of Honor: Frontline - XBE Recomp
-
+![Project Screenshot](docs/Medal_of_Honor-_Frontline.webp)
 An unofficial native PC port of the original Xbox version of Medal of Honor: Frontline, in progress.
 
 The game's XBE is statically recompiled from x86 to C++ and built into a native 64-bit Windows executable with the
