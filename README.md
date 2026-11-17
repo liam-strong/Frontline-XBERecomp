@@ -1,4 +1,9 @@
 # Medal of Honor: Frontline - XBE Recomp
+<p align="center">
+
+![Project Screenshot](docs/Medal_of_Honor-_Frontline.webp)
+
+</p>
 
 An unofficial native PC port of the original Xbox version of Medal of Honor: Frontline, in progress.
 
