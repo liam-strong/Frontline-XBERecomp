@@ -1,7 +1,7 @@
-Medal of Honor: Rising Sun - XBE Recomp @VERSION@ (preview)
-=============================================================
+Medal of Honor: Frontline - XBE Recomp @VERSION@ (preview)
+============================================================
 
-An unofficial native PC port of the original Xbox version of Medal of Honor: Rising Sun. Not affiliated with
+An unofficial native PC port of the original Xbox version of Medal of Honor: Frontline. Not affiliated with
 Electronic Arts. This download contains no game data and no game code: you need your own copy of the Xbox game.
 
 
@@ -9,8 +9,7 @@ Requirements
 ------------
 - Windows 10 or 11, 64-bit
 - A graphics card with Direct3D 12
-- Room for your disc image (about 4.5 GB for a game-partition image or 7.8 GB for a full Redump) in assets\,
-  and about 1 GB more for the first start's build
+- Room for your disc image (about 3 GB) in assets\, and about 1 GB more for the first start's build
 - A controller (XInput) or keyboard and mouse
 
 
@@ -18,81 +17,67 @@ Installing
 ----------
 1. Unzip this folder anywhere you can write to (not Program Files).
 2. Put your Xbox disc image (.iso) into the assets folder. An image of the game partition (xiso) or a full redump
-   both work. The original modified USA dump and the USA and Europe (En,Es,It,Nl,Sv) Redump releases are recognized.
-   Other XBE hashes trigger a warning before starting. Keep only the copy you want to use in assets.
-3. Start MOHRS.exe. The first start translates the game's code from your disc image and builds it into MOHRS.dll and
-   MOHRSCoop.dll behind a progress window, which takes a few minutes. Later starts go straight to the game. If the
-   build is interrupted, the next start carries on where it stopped.
-
-Two Player Campaign (co-op) in the main menu switches to MOHRSCoop.exe and back by itself; keep both executables
-together.
+   both work. The recognized default.xbe is the USA retail rip. Other XBE hashes trigger a warning before starting.
+   Keep only the copy you want to use in assets.
+3. Start MOHF.exe. The first start translates the game's code from your disc image and builds it into MOHF.dll
+   behind a progress window, which takes a few minutes. Later starts go straight to the game. If the build is
+   interrupted, the next start carries on where it stopped.
 
 
 Controls
 --------
-Controllers work as on the Xbox. In singleplayer, keyboard/mouse and the first controller both control player 1;
-switch between them at any time. In co-op or split-screen multiplayer setup they become separate inputs. At
-"press A to join", press Enter on KBM and A on the controller. Join with KBM first to make it player 1.
-They stay separate during the match and pause menus, and share player 1 again on returning to singleplayer.
-KBM has its own Xbox port, leaving three ports for physical controllers. No settings change is needed.
-
-Keyboard and mouse controls:
+Controllers work as on the Xbox. Keyboard and mouse follow the game's own default pad layout. In single player,
+keyboard/mouse and the first controller both control the player; switch between them at any time.
 
   Move                  W A S D          Walk (hold)           Alt
-  Fire                  Left mouse       Aim mode              Right mouse
-  Action                E, F             Next weapon           Q, Mouse 4
+  Fire                  Left mouse       Aim                   Right mouse
+  Use                   E, F             Next weapon           Q, Mouse 4
   Previous weapon       G                Jump                  Space
   Reload                R                Crouch                C, Ctrl
   Melee                 V, Middle mouse  Center view           Z
   Sniper zoom           Wheel, 1 and 2   D-pad left/right      3, 4
-  Back (objectives)     Tab              Pause                 Escape
+  Back                  Tab              Pause                 Escape
 
-In menus, hover and left click to select an entry; right click goes back. The wheel moves through entries. On
-settings screens, click a label or displayed value to select its row, then click the arrows or use the wheel to
-change the value. Click the select/confirm hint to save or
-the back hint to cancel. Pause headings are clickable; right click on a pause page resumes.
-The arrow keys also move, Enter confirms and Backspace goes back. Gameplay bindings can be changed in the [keys]
-table of settings.toml.
+F1 opens graphics and saved places. F2 opens controls. Gameplay bindings can be changed on the F2 page and in the
+[keys] table of settings.toml.
 
 
 Settings
 --------
-Options > PC Options in the main menu, and Preferences > PC Options in the pause screen, change the display mode,
-render scale, frame rate (30, 60 or unlocked), FPS limit, VSync, field of view, widescreen, FPS counter, mouse
-sensitivity and mouse inversion. Left and right change a row, confirm saves, back cancels.
+F1 changes the display mode, resolution, render scale, anisotropic filtering, VSync, frame cap, widescreen, field
+of view and the FPS counter. Mouse sensitivity and mouse inversion are on F2. Saved spots are kept in places.toml
+beside the executable.
 
 Everything is also in settings.toml beside the executable, written on the first start. Some settings are only there:
 
+  load_last_save = true         start from the newest save; the menu opens when this is off or there is no save
   skip_intros = true            no EA logo and opening movie at start
   skip_cutscenes = true         no level intro and outro movies
   mouse_vertical_sensitivity    vertical mouse speed, on top of mouse_sensitivity
   invert_mouse_x                mirrored horizontal mouse look
   walk_speed = 50               percent of running speed while Walk is held
   width / height                output resolution, 0 for the desktop's
-  anisotropic_filtering         0 as the game asks, else a level such as 16
-
-Unlocked frame rates above 60 FPS are new; if something behaves differently from the console, compare with
-Frame Rate at 60 FPS and please report it.
+  fov = 70                      horizontal degrees on a 4:3 frame; widescreen adds Hor+
+  anisotropic_filtering         0 as the game asks, else a level such as 2, 4, 8 or 16
 
 
 Files
 -----
   assets\        your disc image
-  hdd\           the Xbox hard disk: profiles and saved games (hdd\E\UDATA\4541003f)
+  hdd\           the Xbox hard disk: profiles and saved games (hdd\E\UDATA\4541001a)
   settings.toml  settings
+  places.toml    saved spots from the F1 page
   logs\          logs of the last runs
   CrashDumps\    written if the game crashes
   compiler\      the tools of the first start's build
 
-To move to a new version, keep hdd\ and settings.toml and replace the rest.
+To move to a new version, keep hdd\, settings.toml and places.toml, and replace the rest.
 
 
 Known limits of this preview
 ----------------------------
-- The whole campaign has not been played through on this port yet; the later levels (1_5, 1_7, 1_8, 1_9) have
-  not been checked.
-- Multiplayer over a network and Xbox Live are not supported. Split-screen and co-op work.
-- The new PC Options screen is in English in every language.
+- Single player. There is no co-op executable, and multiplayer over a network and Xbox Live are not supported.
+- A launch continues the newest save when load_last_save is on.
 
 
 Reporting problems
