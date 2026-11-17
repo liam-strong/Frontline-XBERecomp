@@ -1,0 +1,39 @@
+#pragma once
+// Hook bodies both images share (default.xbe in src/game, moh3rdc.xbe in src/coop); each image wraps them at its
+// own addresses of the same game functions.
+#include <cstdint>
+
+#include "core/input.h"
+#include "cpu/x86_context.h"
+
+namespace game {
+
+// Development: MOHRS_START_LEVEL=<mission>_<level> (e.g. 1_2) starts that level instead of the first one. The boot
+// picks the level with the game state's SetCurrentLevel(mission, level): 1, 1 on a fresh profile (legal intro, then
+// the level), 1, 16 for the logo and the front end. Called at that function's entry; changes only its first call,
+// and only the fresh profile's 1, 1, so the menus and later level changes behave as on the console.
+void PickStartLevel(X86Context& ctx);
+
+// Movie skipping, after the game's config GetString(key, buffer, size) returned found: game.cfg names each movie,
+// and "none" there means no movie. Answers "none" for legal_movie and legal_intro_movie (EA logo, the opening Pearl
+// Harbor movie) with skip_intros, and for each level's intro_movie and outro_movie with skip_cutscenes. The bonus
+// movies picked in the menus play.
+void SkipMovie(uint32_t key, uint32_t buffer, uint32_t size);
+
+// 60 fps: the frame's end (default.xbe 0x13A90) waits until two vertical blanks have passed since the last frame, then
+// runs the game one fixed tick per blank passed. With fps60 a blank passed counts as two at both of its waiting
+// compares, so a frame is shown each blank and the game runs one tick a frame: the same speed, twice the frames, as
+// the PS2 version's 60 fps patch (sltiu v0, v0, 2 -> 1).
+// With unlocked_fps even zero blanks pass the wait; frame_timing.cpp supplies elapsed ticks to every caller.
+void FrameWait(uint32_t& blanks);
+
+// Development: MOHRS_MENU_PROBE="<seconds>:<press>,..." presses controller buttons on port 0 inside the game, timed
+// from its first controller poll, for menu tests without the PC's keyboard: up down left right start back a b, or
+// capture, which saves the next frame under XBE_CAPTURE_DIR. Each press is held a tenth of a second.
+void ProbePad(input::Pad& pad);
+
+// Development: MOHRS_EVENT_TRACE logs each animation event an entity's listener handles (default.xbe 0xCF780, thiscall
+// with the event record: opcode at +2, argument at +4), with the caller and the listener.
+void TraceAnimEvent(const X86Context& ctx);
+
+}  // namespace game
